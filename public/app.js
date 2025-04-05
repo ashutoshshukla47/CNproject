@@ -27,14 +27,30 @@ socket.on('welcome',(data)=>{
 })
 
 let box=document.querySelector(".mainbox");
+let boxforimage=document.querySelector(".fruit");
 
 socket.on('wait',()=>{
-    box.innerText="Waiting for Opponent";
+    boxforimage.innerText="Waiting for Opponent";
 });
 
 socket.on('match_found',(oname)=>{
     pappu.innerText=`Opponent:- ${oname}`;
-    box.innerText="";
+    boxforimage.innerText="";
 })
+
+
+socket.on('quiz',(options)=>{
+    let l=options.length;
+    console.log(l);
+    console.log(options[0]);
+    console.log(options[1]);
+    console.log(options[2]);
+    console.log(options[3]);
+    console.log(options[l-1]);
+    let photo=document.createElement("img");
+    photo.src=options[l-1];
+    photo.classList.add("image");
+    boxforimage.appendChild(photo);
+});
 
 

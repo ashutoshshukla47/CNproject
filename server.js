@@ -148,6 +148,10 @@ const io = socketio(expressServer);
 
 let users = [];
 
+let roomno=1;
+
+const n=arr.length;
+
 io.on("connection", (socket) => {
     console.log("New user connected:", socket.id);
 
@@ -169,12 +173,45 @@ io.on("connection", (socket) => {
 
             p1.emit("match_found", p2.user );
             p2.emit("match_found",p1.user );
+
+            const room=roomno;
+            roomno++;
+
+            p1.join(room);
+            p2.join(room);
+
+            for(let x=0;x<1;x++)
+            {
+                let options=[];
+                let a1=Math.floor(Math.random()*n);
+                let a2=a1;
+                while(a2==a1)
+                {
+                    a2=Math.floor(Math.random()*n);
+                }
+                let a3=a2;
+                while(a3==a1||a3==a2)
+                {
+                    a3=Math.floor(Math.random()*n);
+                }
+                let a4=a3;
+                while(a4==a3||a4==a2||a4==a1)
+                {
+                    a4=Math.floor(Math.random()*n);
+                }
+                options.push(arr[a1].name);
+                options.push(arr[a2].name);
+                options.push(arr[a3].name);
+                options.push(arr[a4].name);
+                let url=arr[a1].url;
+                options.push(url);
+                io.to(room).emit('quiz',(options));
+            }    
         }
     });
 
     socket.on("disconnect", () => {
         console.log(`User disconnected: ${socket.user}`);
-
         // Remove from users queue if still in
         users = users.filter(s => s !== socket);
     });
