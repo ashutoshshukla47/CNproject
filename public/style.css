@@ -1,0 +1,9 @@
+.topheading{
+    margin-left: 45%;
+}
+
+.scoreboard{
+    display:flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
