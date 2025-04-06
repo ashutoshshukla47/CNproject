@@ -140,7 +140,7 @@ const arr = [
     {
         "name": "Cauliflower",
         "url": "https://images.pexels.com/photos/18121431/pexels-photo-18121431/free-photo-of-cauliflowers-on-a-farm.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
-    },
+    }
 ];
 
 const socketio = require("socket.io");

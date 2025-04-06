@@ -7,3 +7,38 @@
     justify-content: space-between;
     flex-direction: row;
 }
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    background-image: url('3.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  main {
+    flex: 1; /* Makes the main content fill remaining space */
+  }
+  #menu{
+    height: 40px;
+    background-color: rgba(114, 166, 136, 0.484);
+    justify-content: center;
+    align-items: last baseline;
+    display: flex;
+    justify-content: space-around;
+  }
+  .anch{
+    font-size: large;
+    font-style:inherit;
+    color: #0f1111;
+    text-decoration: null;
+    margin-bottom: 10px;
+    /* color: #f08804; */
+  }
+  
