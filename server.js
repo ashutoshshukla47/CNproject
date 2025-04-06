@@ -182,31 +182,43 @@ io.on("connection", (socket) => {
 
             for(let x=0;x<1;x++)
             {
-                let options=[];
-                let a1=Math.floor(Math.random()*n);
-                let a2=a1;
-                while(a2==a1)
-                {
-                    a2=Math.floor(Math.random()*n);
-                }
-                let a3=a2;
-                while(a3==a1||a3==a2)
-                {
-                    a3=Math.floor(Math.random()*n);
-                }
-                let a4=a3;
-                while(a4==a3||a4==a2||a4==a1)
-                {
-                    a4=Math.floor(Math.random()*n);
-                }
-                options.push(arr[a1].name);
-                options.push(arr[a2].name);
-                options.push(arr[a3].name);
-                options.push(arr[a4].name);
-                let url=arr[a1].url;
-                options.push(url);
-                io.to(room).emit('quiz',(options));
-            }    
+                setTimeout(()=>
+                    {
+                        let options=[];
+                        let a1=Math.floor(Math.random()*n);
+                        let a2=a1;
+                        while(a2==a1)
+                        {
+                            a2=Math.floor(Math.random()*n);
+                        }
+                        let a3=a2;
+                        while(a3==a1||a3==a2)
+                        {
+                            a3=Math.floor(Math.random()*n);
+                        }
+                        let a4=a3;
+                        while(a4==a3||a4==a2||a4==a1)
+                        {
+                            a4=Math.floor(Math.random()*n);
+                        }
+                        options.push(arr[a1].name);
+                        options.push(arr[a2].name);
+                        options.push(arr[a3].name);
+                        options.push(arr[a4].name);
+                        let url=arr[a1].url;
+                        options.push(url);
+                        io.to(room).emit('quiz',(options));
+        
+                        p1.on("score",()=>{
+                            p2.emit("oscore");
+                        });
+        
+                        p2.on("score",()=>{
+                            p1.emit("oscore");
+                        });
+                        
+                    },10000);
+            }
         }
     });
 

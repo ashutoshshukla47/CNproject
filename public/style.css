@@ -37,9 +37,11 @@
     display: grid;
     height: 25rem;
     width: 30rem;
-    display:block;
     background-color: aqua;
     border-radius: 0rem 1rem 1rem 0rem;
+    grid-column: 2;
+    grid-row: 2;
+    border: #070707;
 }
 
 .fruit{
@@ -50,4 +52,8 @@
     border-radius:1rem 0rem 0rem 1rem;
 }
 
+.btn{
+    height: 2rem;
+    width: 5rem;
+}
 
