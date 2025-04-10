@@ -17,7 +17,7 @@ let opscore=document.querySelector(".oscore");
 opscore.innerText=`Score:  ${j}`;
 // Send username to the WebSocket server
 
-const socket=io("http://192.168.1.47:8080");
+const socket=io("http://localhost:8080");
 
 let room=null;
 
@@ -65,6 +65,7 @@ socket.on('quiz',(options)=>{
     let photo=document.createElement("img");
     photo.src=options[l-1];
     photo.classList.add("image");
+    boxforimage.innerHTML="";
     boxforimage.appendChild(photo);
     const o1=document.querySelector("#a");
     o1.innerText=a;
@@ -74,6 +75,10 @@ socket.on('quiz',(options)=>{
     o3.innerText=c;
     const o4=document.querySelector("#d");
     o4.innerText=d;
+    [o1, o2, o3, o4].forEach(btn => btn.disabled = false);
+    [o1, o2, o3, o4].forEach(btn => btn.style.backgroundColor = "white");
+
+
 
     [o1, o2, o3, o4].forEach(button => {
         button.onclick = () => {
@@ -84,7 +89,7 @@ socket.on('quiz',(options)=>{
                 button.style.backgroundColor = "green";
                 i++;
                 myscore.innerText=`My Score:  ${i}`;
-                socket.emit("score");
+                socket.emit("score",i);
             } else {
                 button.style.backgroundColor = "red";
 
@@ -98,13 +103,26 @@ socket.on('quiz',(options)=>{
         };
     });
 
-    socket.on("oscore", () => {
-        j++; // Opponent's score
+    socket.on("oscore", (data) => {
+        j=data; // Opponent's score
         console.log("opponents score increased");
         opscore.innerText = `Score: ${j}`;
     });
     
-
+    socket.on("result",()=>{
+        if(i>j)
+        {
+            boxforimage.innerHTML="<h1>WINNER OP BOLTE</h1>";
+        }
+        else if(i<j)
+        {
+            boxforimage.innerHTML="<h1>1 hp bacha bhai</h1>";
+        }
+        else
+        {
+            boxforimage.innerHTML="<h1> okay tata bye bye gya</h1>";
+        }
+    });
 
 });
 
