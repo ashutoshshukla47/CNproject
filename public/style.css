@@ -1,13 +1,17 @@
-.topheading {
-  margin-left: 45%;
-}
 
 .scoreboard {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-direction: row;
-  height: 2rem;
-  width: 100%;
+  height: 9rem;
+  width: 60%;
+  margin: auto;
+  font-size: x-large;
+  border-radius: 10px;
+  background-color: rgba(114, 166, 136, 0.484);  
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ccc; /* You can modify this */
+  margin-top: 1rem;
 }
 
 
@@ -66,6 +70,7 @@
     align-items: center;
     padding: 1rem;
     border-radius: 1rem;
+    font-size: medium;
 }
 html, body {
     height: 100%;
@@ -74,7 +79,7 @@ html, body {
   }
   
   body {
-    background-image: url('3.png');
+    background:linear-gradient(270deg, #abcc86, #72a688);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -85,50 +90,6 @@ html, body {
   main {
     flex: 1; /* Makes the main content fill remaining space */
   }
-  #menu{
-    height: 40px;
-    background-color: rgba(114, 166, 136, 0.484);
-    justify-content: center;
-    align-items: last baseline;
-    display: flex;
-    justify-content: space-around;
-  }
-  .anch{
-    font-size: large;
-    font-style:inherit;
-    color: #0f1111;
-    text-decoration: null;
-    margin-bottom: 10px;
-    /* color: #f08804; */
-  }
-  .gameon{
-    visibility: hidden;
-    display: none;
-  }
-  .projecthtml{
-    visibility: hidden;
-    display: none;
-  }
-  .homehtml{
-    visibility: visible;
-  }
-
-
-  html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  background-image: url('homebck.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: flex;
-  flex-direction: column;
-}
 
 .anch {
   font-size: large;
@@ -192,33 +153,39 @@ body {
   outline: none;
 }
 
-.btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  width: 100%;
-  margin-left: 13%;
-  margin-top: 25px;
-}
-
-button {
-  height: 40px;
-  padding: 0 20px;
-  font-size: 16px;
-  background-color: #abcc86;
-  color: #0f1111;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 150px;
-}
-
-button:hover {
-  background-color: #72a688;
-}
-
   
+
+/*nav-bar*/
+.logoimg {
+  height: 45px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  width: 100%;
+  height: 45px;
+  background: linear-gradient(270deg, #abcc86, #72a688);
+  justify-content: center;
+  align-items: last baseline;
+  display: flex;
+  justify-content: space-around;
+  margin: 0;
+  padding: 0;
+}
+
+#menu {
+  height: 45px;
+  display: flex;
+   z-index: 1;
+}
+
+
+.anch {
+  font-size: large;
+  font-style: inherit;
+  color: #0f1111;
+  text-decoration: none;
+  margin-bottom: 10px;
+  /* color: #f08804; */
+}

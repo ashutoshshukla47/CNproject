@@ -9,23 +9,25 @@ let i=0,j=0;
 let oppo="";
 
 let pappu=document.querySelector(".oname");
-pappu.innerText=`Pappu:- fetching`;
+pappu.innerText=`Opponent:- Fetching`;
 
 let myscore=document.querySelector(".score");
 myscore.innerText=`My Score:  ${i}`;
 
 let opscore=document.querySelector(".oscore");
-opscore.innerText=`Score:  ${j}`;
+opscore.innerText=`Opponent Score:  ${j}`;
 // Send username to the WebSocket server
 
 const socket=io("http://localhost:8080");
 
 let room=null;
 
+
 socket.emit('add',username);
 socket.on('welcome',(data)=>{
     console.log("connected 2 server");
 })
+
 
 let box=document.querySelector(".mainbox");
 let boxforimage=document.querySelector(".fruit");
@@ -35,7 +37,7 @@ socket.on('wait',()=>{
 });
 
 socket.on('match_found',(oname)=>{
-    pappu.innerText=`Opponent:- ${oname}`;
+    pappu.innerText=`Opponent Name:- ${oname}`;
     boxforimage.innerText="";
 })
 
@@ -44,6 +46,7 @@ socket.on('quiz',(options)=>{
     let l=options.length;
     console.log(l);
     let a1=Math.floor(Math.random()*4);
+
     let a2=a1;
     while(a2==a1)
     {
@@ -88,7 +91,7 @@ socket.on('quiz',(options)=>{
 
             if (button.innerText === options[0]) {
                 button.style.backgroundColor = "green";
-                i++;
+                i=i+4;
                 myscore.innerText=`My Score:  ${i}`;
                 socket.emit("score",i);
             } else {

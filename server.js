@@ -52,31 +52,31 @@ const arr = [
         "url": "https://images.pexels.com/photos/7444967/pexels-photo-7444967.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
     },
     {
-        "name": "orange",
+        "name": "Orange",
         "url": "https://images.pexels.com/photos/161559/background-bitter-breakfast-bright-161559.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
-        "name": "strawberry",
+        "name": "Strawberry",
         "url": "https://images.pexels.com/photos/46174/strawberries-berries-fruit-freshness-46174.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
-        "name": "watermelon",
+        "name": "Watermelon",
         "url": "https://images.pexels.com/photos/1313267/pexels-photo-1313267.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
-        "name": "grapes",
+        "name": "Grapes",
         "url": "https://images.pexels.com/photos/60021/grapes-wine-fruit-vines-60021.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
-        "name": "pineapple",
+        "name": "Pineapple",
         "url": "https://images.pexels.com/photos/7156087/pexels-photo-7156087.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
     },
     {
-        "name": "pomogranate",
+        "name": "Pomogranate",
         "url": "https://images.pexels.com/photos/7657080/pexels-photo-7657080.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
     },
     {
-        "name": "banana",
+        "name": "Banana",
         "url": "https://images.pexels.com/photos/61127/pexels-photo-61127.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
     },
     {
@@ -146,9 +146,13 @@ const io = socketio(expressServer);
 
 let users = [];
 
-let roomno=1;
+let roomno = 1;
 
-const n=arr.length;
+const n = arr.length;
+
+let trr = new Array(n).fill(1);
+
+
 
 io.on("connection", (socket) => {
     console.log("New user connected:", socket.id);
@@ -169,60 +173,61 @@ io.on("connection", (socket) => {
 
             console.log(`Match Found: ${p1.user} vs ${p2.user}`);
 
-            p1.emit("match_found", p2.user );
-            p2.emit("match_found",p1.user );
+            p1.emit("match_found", p2.user);
+            p2.emit("match_found", p1.user);
 
-            const room=roomno;
+            const room = roomno;
             roomno++;
 
             p1.join(room);
             p2.join(room);
 
-            for(let x=0;x<11;x++)
-                {
-                    setTimeout(()=>
-                        {
-                            if(x==10)
-                            {
-                                p1.emit("result");
-                                p2.emit("result");    
-                            }
-                            else{
-                            let options=[];
-                            let a1=Math.floor(Math.random()*n);
-                            let a2=a1;
-                            while(a2==a1)
-                            {
-                                a2=Math.floor(Math.random()*n);
-                            }
-                            let a3=a2;
-                            while(a3==a1||a3==a2)
-                            {
-                                a3=Math.floor(Math.random()*n);
-                            }
-                            let a4=a3;
-                            while(a4==a3||a4==a2||a4==a1)
-                            {
-                                a4=Math.floor(Math.random()*n);
-                            }
-                            options.push(arr[a1].name);
-                            options.push(arr[a2].name);
-                            options.push(arr[a3].name);
-                            options.push(arr[a4].name);
-                            let url=arr[a1].url;
-                            options.push(url);
-                            io.to(room).emit('quiz',(options));
-            
-                            p1.on("score",(data)=>{
-                                p2.emit("oscore",data);
-                            });
-            
-                            p2.on("score",(data)=>{
-                                p1.emit("oscore",data);
-                            });}
-        
-                    },x*10000);
-                }
+            for (let x = 0; x < 11; x++) {
+                setTimeout(() => {
+                    if (x == 10) {
+                        p1.emit("result");
+                        p2.emit("result");
+                    }
+                    else {
+                        let options = [];
+                        let a1 = Math.floor(Math.random() * n);
+                        if (trr[a1] == 0) {
+                            a1 = Math.floor(Math.random() * 4);
+                        }
+                        else {
+                            trr[a1] = 0;
+                        }
+                        let a2 = a1;
+                        while (a2 == a1) {
+                            a2 = Math.floor(Math.random() * n);
+                        }
+                        let a3 = a2;
+                        while (a3 == a1 || a3 == a2) {
+                            a3 = Math.floor(Math.random() * n);
+                        }
+                        let a4 = a3;
+                        while (a4 == a3 || a4 == a2 || a4 == a1) {
+                            a4 = Math.floor(Math.random() * n);
+                        }
+                        options.push(arr[a1].name);
+                        options.push(arr[a2].name);
+                        options.push(arr[a3].name);
+                        options.push(arr[a4].name);
+                        let url = arr[a1].url;
+                        options.push(url);
+                        io.to(room).emit('quiz', (options));
+
+                        p1.on("score", (data) => {
+                            p2.emit("oscore", data);
+                        });
+
+                        p2.on("score", (data) => {
+                            p1.emit("oscore", data);
+                        });
+                    }
+
+                }, x * 10000);
+            }
         }
     });
 
@@ -233,4 +238,3 @@ io.on("connection", (socket) => {
     });
 });
 
-           
