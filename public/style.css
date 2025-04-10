@@ -29,7 +29,7 @@
 .mainbox{
     display: flex;
     margin: auto;
-    background-color: yellow;
+    background-color: rgba(red, green, blue, 0);
     height: 30rem;
     width: 80rem;
     border-radius: 2rem;
@@ -39,7 +39,7 @@
     display: grid;
     height: 30rem;
     width: 40rem;
-    background-color: aqua;
+    background-color: rgba(red, green, blue, 0);
     border-radius: 0rem 1rem 1rem 0rem;
     grid-column: 2;
     grid-row: 2;
@@ -53,7 +53,7 @@
     height: 30rem;
     width: 40rem;
     display: block;
-    background-color: green;
+    background-color: rgba(red, green, blue, 0);
     border-radius:1rem 0rem 0rem 1rem;
 }
 
