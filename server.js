@@ -3,9 +3,7 @@ const app = express();
 
 app.use(express.static("public")); // Serve static files from 'public' folder
 
-const expressServer = app.listen(8080, () => {
-    console.log("Server running at http://192:168:1:47:8080");
-});
+const expressServer = app.listen(8080);
 
 const arr = [
 
@@ -180,45 +178,51 @@ io.on("connection", (socket) => {
             p1.join(room);
             p2.join(room);
 
-            for(let x=0;x<1;x++)
-            {
-                setTimeout(()=>
-                    {
-                        let options=[];
-                        let a1=Math.floor(Math.random()*n);
-                        let a2=a1;
-                        while(a2==a1)
+            for(let x=0;x<11;x++)
+                {
+                    setTimeout(()=>
                         {
-                            a2=Math.floor(Math.random()*n);
-                        }
-                        let a3=a2;
-                        while(a3==a1||a3==a2)
-                        {
-                            a3=Math.floor(Math.random()*n);
-                        }
-                        let a4=a3;
-                        while(a4==a3||a4==a2||a4==a1)
-                        {
-                            a4=Math.floor(Math.random()*n);
-                        }
-                        options.push(arr[a1].name);
-                        options.push(arr[a2].name);
-                        options.push(arr[a3].name);
-                        options.push(arr[a4].name);
-                        let url=arr[a1].url;
-                        options.push(url);
-                        io.to(room).emit('quiz',(options));
+                            if(x==10)
+                            {
+                                p1.emit("result");
+                                p2.emit("result");    
+                            }
+                            else{
+                            let options=[];
+                            let a1=Math.floor(Math.random()*n);
+                            let a2=a1;
+                            while(a2==a1)
+                            {
+                                a2=Math.floor(Math.random()*n);
+                            }
+                            let a3=a2;
+                            while(a3==a1||a3==a2)
+                            {
+                                a3=Math.floor(Math.random()*n);
+                            }
+                            let a4=a3;
+                            while(a4==a3||a4==a2||a4==a1)
+                            {
+                                a4=Math.floor(Math.random()*n);
+                            }
+                            options.push(arr[a1].name);
+                            options.push(arr[a2].name);
+                            options.push(arr[a3].name);
+                            options.push(arr[a4].name);
+                            let url=arr[a1].url;
+                            options.push(url);
+                            io.to(room).emit('quiz',(options));
+            
+                            p1.on("score",(data)=>{
+                                p2.emit("oscore",data);
+                            });
+            
+                            p2.on("score",(data)=>{
+                                p1.emit("oscore",data);
+                            });}
         
-                        p1.on("score",()=>{
-                            p2.emit("oscore");
-                        });
-        
-                        p2.on("score",()=>{
-                            p1.emit("oscore");
-                        });
-                        
-                    },10000);
-            }
+                    },x*10000);
+                }
         }
     });
 
@@ -228,3 +232,5 @@ io.on("connection", (socket) => {
         users = users.filter(s => s !== socket);
     });
 });
+
+           

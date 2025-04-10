@@ -7,17 +7,18 @@
     justify-content: space-between;
     flex-direction: row;
 }
-<<<<<<< HEAD
+
 
 .low{
     position: fixed;
     bottom: 0;
     width: 100%;
+    visibility: hidden;
 }
 
 .image{
-    height: 23.3rem;
-    width: 24rem;
+    height: 28rem;
+    width: 35rem;
     display: block;
     margin: 10px auto;
     border: 4px solid #070707; 
@@ -29,36 +30,41 @@
     display: flex;
     margin: auto;
     background-color: yellow;
-    height: 25rem;
-    width: 60rem;
+    height: 30rem;
+    width: 80rem;
     border-radius: 2rem;
 }
 
 .option{
     display: grid;
-    height: 25rem;
-    width: 30rem;
+    height: 30rem;
+    width: 40rem;
     background-color: aqua;
     border-radius: 0rem 1rem 1rem 0rem;
     grid-column: 2;
     grid-row: 2;
     border: #070707;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .fruit{
-    height: 25rem;
-    width: 30rem;
+    height: 30rem;
+    width: 40rem;
     display: block;
     background-color: green;
     border-radius:1rem 0rem 0rem 1rem;
 }
 
 .btn{
-    height: 2rem;
-    width: 5rem;
+    height: 3rem;
+    width: 30rem;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 1rem;
 }
-
-=======
 html, body {
     height: 100%;
     margin: 0;
@@ -94,4 +100,3 @@ html, body {
     /* color: #f08804; */
   }
   
->>>>>>> c011b84d10d0aaba212d808f053b2657bafbed48
