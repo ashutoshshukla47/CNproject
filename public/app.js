@@ -1,5 +1,6 @@
-let username = prompt("Enter your Username"); 
-alert("Welcome " + username + "!");
+let username=sessionStorage.getItem("username");
+
+console.log(username);
 
 let greet=document.querySelector(".name");
 greet.innerText=`Player Name:- ${username}`;
@@ -125,5 +126,7 @@ socket.on('quiz',(options)=>{
     });
 
 });
+
+
 
 
