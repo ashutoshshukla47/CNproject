@@ -1,11 +1,13 @@
-.topheading{
-    margin-left: 45%;
+.topheading {
+  margin-left: 45%;
 }
 
-.scoreboard{
-    display:flex;
-    justify-content: space-between;
-    flex-direction: row;
+.scoreboard {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  height: 2rem;
+  width: 100%;
 }
 
 
@@ -99,4 +101,124 @@ html, body {
     margin-bottom: 10px;
     /* color: #f08804; */
   }
+  .gameon{
+    visibility: hidden;
+    display: none;
+  }
+  .projecthtml{
+    visibility: hidden;
+    display: none;
+  }
+  .homehtml{
+    visibility: visible;
+  }
+
+
+  html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-image: url('homebck.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+}
+
+.anch {
+  font-size: large;
+  font-style: inherit;
+  color: #0f1111;
+  text-decoration: none;
+  margin-bottom: 10px;
+  /* color: #f08804; */
+}
+
+.logoimg {
+  height: 45px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  width: 100%;
+  height: 45px;
+  background: linear-gradient(270deg, #abcc86, #72a688);
+  justify-content: center;
+  align-items: last baseline;
+  display: flex;
+  justify-content: space-around;
+  margin: 0;
+  padding: 0;
+}
+
+#menu {
+  height: 45px;
+  display: flex;
+  z-index: 1;
+}
+
+#cntr {
+  height: 65%;
+}
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 30px;
+}
+
+.textbox {
+  height: 50px;
+  width: 250px;
+  font-size: 16px;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-left: 20px;
+  background-color: #abcc86;
+  color: #0f1111;
+}
+
+.textbox:focus {
+  border-color: #72a688;
+  outline: none;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  margin-left: 13%;
+  margin-top: 25px;
+}
+
+button {
+  height: 40px;
+  padding: 0 20px;
+  font-size: 16px;
+  background-color: #abcc86;
+  color: #0f1111;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+}
+
+button:hover {
+  background-color: #72a688;
+}
+
   
